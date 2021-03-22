@@ -1,4 +1,7 @@
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 import "./styles/main.pcss";
+
 
 if (process.env.NODE_ENV === "development") {
   require("file-loader!./index.pug");
@@ -8,6 +11,13 @@ import "./scripts/skills";
 
 window.onload = function () {
 
+  const swiper = new Swiper('.swiper-container', {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    loop: true,
+  });
 
   let api = () => {//api карта
     ymaps.ready(init);
@@ -215,4 +225,6 @@ window.onload = function () {
   };
   validation();
 }
+
+
 

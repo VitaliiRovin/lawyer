@@ -214,7 +214,7 @@ html(lang="en")
                 +image(`content/${item.img}.jpg`, "inst__img")
                 p #{item.text}
                 .inst__cover-block
-          .fullscreen.fullscreen--active
+          .fullscreen
             ul.fullscreen__list
               each item in items
                 li.fullscreen__item
@@ -265,6 +265,14 @@ html(lang="en")
                 .form__thanks Отправлено. Спасибо!
 
       section.map(id="map")
+
+      .swiper-container
+        .swiper-wrapper
+          .swiper-slide Slide 1
+          .swiper-slide Slide 2
+          .swiper-slide Slide 3
+        .swiper-button-prev
+        .swiper-button-next
 
       footer.footer
         .footer__text &copy;2021 Ваш Юрист в Москве.
