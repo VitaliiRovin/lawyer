@@ -1,7 +1,4 @@
-import Swiper from 'swiper';
-import 'swiper/swiper-bundle.css';
 import "./styles/main.pcss";
-
 
 if (process.env.NODE_ENV === "development") {
   require("file-loader!./index.pug");
@@ -11,13 +8,61 @@ import "./scripts/skills";
 
 window.onload = function () {
 
-  const swiper = new Swiper('.swiper-container', {
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    loop: true,
-  });
+  let openInst = () => {//открыть слайдер instagram
+    const items = document.querySelectorAll('.inst__item');
+    const fullscreen = document.querySelector('.fullscreen');
+    const close = document.querySelector('.fullscreen__close');
+
+    for (let i = 0; i < items.length; i++) {
+      items[i].addEventListener('click', evt => {
+        evt.preventDefault();
+        fullscreen.classList.add('fullscreen--active');
+      })
+    }
+
+    close.addEventListener('click', evt => {
+      evt.preventDefault()
+      fullscreen.classList.remove('fullscreen--active');
+    })
+
+    const swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      effect: 'fade',
+      preloadImages: false,
+      lazy: {
+        loadPrevNext: false,
+      },
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+    });
+
+    const swiperInSwiper = new Swiper('.fullscreen__columnLeft', {
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      effect: 'fade',
+      preloadImages: false,
+      lazy: {
+        loadPrevNext: false,
+      },
+      nested: true,
+      watchOverflow: true,
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+    });
+
+
+  }
+  openInst();
+
+
 
   let api = () => {//api карта
     ymaps.ready(init);
@@ -109,56 +154,6 @@ window.onload = function () {
     };
   }
   parallaxEffect();
-
-  // let sliderInst = () => {//слайдер instagram
-  //   const close = document.querySelector('.fullscreen__close');
-  //   const left = document.querySelector('.fullscreen__left');
-  //   const right = document.querySelector('.fullscreen__right');
-  //   const fullscreen = document.querySelector('.fullscreen');
-  //   const fullscreenItems = document.querySelectorAll('.fullscreen__item')
-  //   const items = document.querySelectorAll('.inst__item');
-  //   let active = 0;
-  //
-  //   for (let i = 0; i < items.length; i++) {
-  //     items[i].addEventListener('click', evt => {
-  //       evt.preventDefault();
-  //
-  //       fullscreen.classList.add('fullscreen--active');
-  //       fullscreenItems[i].classList.add('fullscreen__item--active');
-  //       fullscreenItems[active].classList.remove('fullscreen__item--active');
-  //       active = i;
-  //       console.log(active)
-  //
-  //       left.addEventListener('click', evt => {
-  //         evt.preventDefault();
-  //
-  //         fullscreenItems[--i].classList.add('fullscreen__item--active');
-  //         fullscreenItems[active].classList.remove('fullscreen__item--active');
-  //         active = i;
-  //         console.log(active)
-  //       })
-  //
-  //       right.addEventListener('click', evt => {
-  //         evt.preventDefault();
-  //
-  //         fullscreenItems[++i].classList.add('fullscreen__item--active');
-  //         fullscreenItems[active].classList.remove('fullscreen__item--active');
-  //         active = i;
-  //         console.log(active)
-  //       })
-  //
-  //       close.addEventListener('click', evt => {
-  //         evt.preventDefault();
-  //
-  //         fullscreen.classList.remove('fullscreen--active')
-  //         fullscreenItems[active].classList.remove('fullscreen__item--active');
-  //
-  //         console.log(active)
-  //       })
-  //     })
-  //   }
-  // }
-  // sliderInst();
 
 
   let validation = () => {//валидация формы
