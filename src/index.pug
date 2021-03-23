@@ -184,30 +184,19 @@ html(lang="en")
                       "Об итоге расскажу позже",
               img: ["practice9", "practice8", "practice7", "practice6"]
             },
-            {
-              text: "контент",
-              img: ["practice1"]
-            },
-            {
-              text: "контент",
-              img: ["practice9"]
-            },
-            {
-              text: "контент",
-              img: ["practice9"]
-            },
-            {
-              text: "контент",
-              img: ["practice9"]
-            },
-            {
-              text: "контент",
-              img: ["practice9"]
-            },
-            {
-              text: "контент",
-              img: ["practice9"]
-            },
+            {text: "контент", img: ["practice1"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
+            {text: "контент", img: ["practice9"]},
           ];
         .inst__content
           ul.inst__list
@@ -216,7 +205,7 @@ html(lang="en")
                 +image(`content/${item.img[0]}.jpg`, "inst__img")
                 p #{item.text}
                 .inst__cover-block
-          .inst__btn-more
+          button.inst__btn-more Показать еще
           .fullscreen.swiper-container
             ul.fullscreen__list.swiper-wrapper
               each item in items
@@ -273,4 +262,3 @@ html(lang="en")
 
       footer.footer
         .footer__text &copy;2021 Ваш Юрист в Москве.
-

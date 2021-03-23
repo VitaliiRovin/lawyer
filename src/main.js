@@ -8,15 +8,39 @@ import "./scripts/skills";
 
 window.onload = function () {
 
+  let openMoreSlides = () => {
+    const btn = document.querySelector('.inst__btn-more');
+    let data = Array.from(document.querySelectorAll('.inst__list .inst__item'));
+    let step = 6;
+    let item = 0;
+
+    data.slice(step).forEach(e => e.style.display = 'none');
+    item += step;
+
+    btn.addEventListener('click', function(e){
+      let tmp = data.slice(item, item + step);
+      tmp.forEach(e => e.style.display = 'block');
+      item += step;
+
+      if(tmp.length < 6)
+        this.remove();
+    });
+  }
+  openMoreSlides();
+
+
   let openInst = () => {//открыть слайдер instagram
     const items = document.querySelectorAll('.inst__item');
     const fullscreen = document.querySelector('.fullscreen');
     const close = document.querySelector('.fullscreen__close');
+    let activeSlide = 0;
 
     for (let i = 0; i < items.length; i++) {
       items[i].addEventListener('click', evt => {
         evt.preventDefault();
         fullscreen.classList.add('fullscreen--active');
+        activeSlide = i;
+        swiper.slideTo(activeSlide)
       })
     }
 
@@ -57,11 +81,8 @@ window.onload = function () {
       observeParents: true,
       observeSlideChildren: true,
     });
-
-
   }
   openInst();
-
 
 
   let api = () => {//api карта
@@ -220,6 +241,3 @@ window.onload = function () {
   };
   validation();
 }
-
-
-
