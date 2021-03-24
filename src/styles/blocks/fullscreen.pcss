@@ -17,15 +17,40 @@
         background-color: $bg-color-fullscreen;
 
         .fullscreen__container {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            @include tablets {
+                flex-direction: column;
+            }
 
             .fullscreen__columnLeft {
                 width: 600px;
                 height: 600px;
                 margin-right: 40px;
                 position: relative;
+
+                @include desktop {
+                    width: 400px;
+                    height: 400px;
+                }
+
+                @include landscape {
+                    width: 300px;
+                    height: 300px;
+                }
+
+                @include tablets {
+                    margin-right: 0;
+                    margin-bottom: 40px;
+                }
+
+                @include phones {
+                    width: 250px;
+                    height: 250px;
+                }
 
                 .swiper-pagination-bullet {
                     width: 10px;
@@ -53,6 +78,23 @@
                 height: 600px;
                 width: 330px;
                 overflow-y: scroll;
+
+                @include desktop {
+                    height: 400px;
+                }
+
+                @include landscape {
+                    height: 300px;
+                }
+
+                @include tablets {
+                    width: 300px;
+                }
+
+                @include phones {
+                    width: 250px;
+                    height: 250px;
+                }
 
                 &::-webkit-scrollbar {
                     width: 7px;
@@ -117,7 +159,7 @@
         cursor: pointer;
         position: absolute;
         top: 40px;
-        right: 53px;
+        right: 5%;
         width: 40px;
         height: 40px;
         z-index: 50;
@@ -128,15 +170,23 @@
     }
 
     .fullscreen__left {
-        margin-left: 30px;
+        margin-left: 5%;
         outline: none;
         color: $white-color;
+
+        @include landscape {
+            margin-left: 2%;
+        }
     }
 
     .fullscreen__right {
-        margin-right: 50px;
+        margin-right: 5%;
         outline: none;
         color: $white-color;
+
+        @include landscape {
+            margin-right: 2%;
+        }
     }
 }
 

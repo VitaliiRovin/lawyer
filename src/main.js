@@ -15,12 +15,12 @@ window.onload = function () {
     data.slice(step).forEach(e => e.style.display = 'none');
     item += step;
 
-    btn.addEventListener('click', function(e){
+    btn.addEventListener('click', function (e) {
       let tmp = data.slice(item, item + step);
       tmp.forEach(e => e.style.display = 'block');
       item += step;
 
-      if(tmp.length < 6)
+      if (tmp.length < 6)
         this.remove();
     });
   }
@@ -149,28 +149,37 @@ window.onload = function () {
 
   let parallaxEffect = () => {//эфект паралакса
 
-    let parallaxMain = (function () {
-      const bg = document.querySelector(".hero__bg");
+    window.onresize = function () {
+      let withWindow = document.documentElement.clientWidth;
 
-      return {
-        move: function (block, windowScroll, strafeAmount) {
-          let strafe = windowScroll / -strafeAmount + "%";
-          let style = block.style;
-          let transformString = "translate3d(0, " + strafe + ", 0)";
+      if (withWindow > 900) {
+        let parallaxMain = (function () {
+          const bg = document.querySelector(".hero__bg");
 
-          style.transform = transformString;
-          style.webkitTransform = transformString;
-        },
-        init: function (wScroll) {
-          this.move(bg, wScroll, -20);
-        }
+          return {
+            move: function (block, windowScroll, strafeAmount) {
+              let strafe = windowScroll / -strafeAmount + "%";
+              let style = block.style;
+              let transformString = "translate3d(0, " + strafe + ", 0)";
+
+              style.transform = transformString;
+              style.webkitTransform = transformString;
+            },
+            init: function (wScroll) {
+              this.move(bg, wScroll, -20);
+            }
+          }
+        }());
+
+        window.onscroll = function () {
+          let wScroll = window.pageYOffset;
+          parallaxMain.init(wScroll);
+        };
+      } else {
+        window.onscroll = function () {
+        };
       }
-    }());
-
-    window.onscroll = function () {
-      let wScroll = window.pageYOffset;
-      parallaxMain.init(wScroll);
-    };
+    }
   }
   parallaxEffect();
 
@@ -238,4 +247,19 @@ window.onload = function () {
     }
   };
   validation();
+
+
+  let hamburgerClose = () => {//закрытие гамбургера
+    let hamburgerItems = document.querySelectorAll('.hamburger__item');
+    const checkbox = document.querySelector('#hamburger__toggle');
+
+    for (let i = 0; i < hamburgerItems.length; i++) {
+      hamburgerItems[i].addEventListener('click', evt => {
+        evt.preventDefault();
+
+        checkbox.checked = false;
+      })
+    }
+  };
+  hamburgerClose();
 }
