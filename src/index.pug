@@ -77,7 +77,7 @@ html(lang="en")
                 li.hamburger__item
                   a.hamburger__link(href=item.href) #{item.name}
 
-      section.hero(id="hero")
+      article.hero(id="hero")
         .hero__bg
           +image("background/moscow.jpg", "hero__img", "картинка москвы")
         .hero__container
@@ -92,7 +92,7 @@ html(lang="en")
             .hero__btn
               a.btn(href="#contacts") Контакты
 
-      section.practice(id="practice")
+      article.practice(id="practice")
         .practice__header
           .practice__header-container.container
             h2 Направления юридической практики
@@ -121,7 +121,7 @@ html(lang="en")
               each item in items
                 li.practice__item
                   h2 #{item.name}
-                  +image(`content/${item.img}.jpg`, "practice__img")
+                  +image(`content/${item.img}.jpg`, "practice__img", "контентное изображение")
                   h3 #{item.desc}
           -
             var items = [
@@ -145,7 +145,7 @@ html(lang="en")
             ul.practice__list-container.container
               each item in items
                 li.practice__item
-                  +image(`content/${item.img}.jpg`, "practice__img")
+                  +image(`content/${item.img}.jpg`, "practice__img", "контентное изображение")
                   h2 #{item.name}
                   h3 #{item.desc}
           -
@@ -170,11 +170,11 @@ html(lang="en")
             ul.practice__list-container.container
               each item in items
                 li.practice__item
-                  +image(`content/${item.img}.jpg`, "practice__img")
+                  +image(`content/${item.img}.jpg`, "practice__img", "контентное изображение")
                   h2 #{item.name}
                   h3 #{item.desc}
 
-      section.inst(id="inst")
+      article.inst(id="inst")
         -
           var items = [
             {
@@ -219,7 +219,7 @@ html(lang="en")
           ul.inst__list
             each item in items
               li.inst__item
-                +image(`content/${item.img[0]}.jpg`, "inst__img")
+                +image(`content/${item.img[0]}.jpg`, "inst__img", "изображение из инстограмма")
                 p #{item.text}
                 .inst__cover-block
           button.inst__btn-more Показать еще
@@ -232,7 +232,7 @@ html(lang="en")
                       ul.fullscreen__slider-list.swiper-wrapper
                         each pic in item.img
                           li.fullscreen__slider-item.swiper-slide
-                            +image(`content/${pic}.jpg`, "inst__img")
+                            +image(`content/${pic}.jpg`, "inst__img", "изображение из инстограмма")
                       .fullscreen__pagination.swiper-pagination
                     .fullscreen__columnRight
                       .fullscreen__header
@@ -246,7 +246,7 @@ html(lang="en")
             .fullscreen__right.swiper-button-next
 
 
-      section.contacts(id="contacts")
+      article.contacts(id="contacts")
         .contacts__pic
         .contacts__content
           .contacts__container
@@ -275,7 +275,7 @@ html(lang="en")
                 button.form__btn(type="submit") Отправить
                 .form__thanks Отправлено. Спасибо!
 
-      section.map(id="map")
+      article.map(id="map")
 
       footer.footer
         .footer__text &copy;2021 Ваш Юрист в Москве.
