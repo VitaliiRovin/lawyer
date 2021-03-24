@@ -39,7 +39,6 @@ window.onload = function () {
         evt.preventDefault();
 
         fullscreen.classList.add('fullscreen--active');
-        document.querySelector('.fullscreen--active').style.height = window.innerHeight + 'px';
         activeSlide = i;
         swiper.slideTo(activeSlide)
       })
