@@ -38,8 +38,8 @@ window.onload = function () {
       items[i].addEventListener('click', evt => {
         evt.preventDefault();
 
-        body.classList.add('fullscreen__active-body');
         fullscreen.classList.add('fullscreen--active');
+        document.querySelector('.fullscreen--active').style.height = window.innerHeight + 'px';
         activeSlide = i;
         swiper.slideTo(activeSlide)
       })
