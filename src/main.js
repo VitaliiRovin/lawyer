@@ -38,6 +38,7 @@ window.onload = function () {
       items[i].addEventListener('click', evt => {
         evt.preventDefault();
 
+        body.style.overflow = 'hidden';
         fullscreen.classList.add('fullscreen--active');
         activeSlide = i;
         swiper.slideTo(activeSlide)
@@ -47,7 +48,7 @@ window.onload = function () {
     close.addEventListener('click', evt => {
       evt.preventDefault()
 
-      body.classList.remove('fullscreen__active-body');
+      body.style.overflow = 'visible';
       fullscreen.classList.remove('fullscreen--active');
     })
 
