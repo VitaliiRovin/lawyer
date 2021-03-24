@@ -44,6 +44,12 @@
 .form__col {
     &:first-child {
         margin-right: 10px;
+
+        .form__validate {
+            @include phones {
+                top: 36%;
+            }
+        }
     }
 }
 

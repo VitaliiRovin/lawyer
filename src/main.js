@@ -31,11 +31,14 @@ window.onload = function () {
     const items = document.querySelectorAll('.inst__item');
     const fullscreen = document.querySelector('.fullscreen');
     const close = document.querySelector('.fullscreen__close');
+    const body = document.querySelector('body');
     let activeSlide = 0;
 
     for (let i = 0; i < items.length; i++) {
       items[i].addEventListener('click', evt => {
         evt.preventDefault();
+
+        body.style.overflow = 'hidden';
         fullscreen.classList.add('fullscreen--active');
         activeSlide = i;
         swiper.slideTo(activeSlide)
@@ -44,6 +47,8 @@ window.onload = function () {
 
     close.addEventListener('click', evt => {
       evt.preventDefault()
+
+      body.style.overflow = 'visible';
       fullscreen.classList.remove('fullscreen--active');
     })
 
