@@ -4,8 +4,6 @@ if (process.env.NODE_ENV === "development") {
   require("file-loader!./index.pug");
 }
 
-import "./scripts/skills";
-
 window.onload = function () {
 
   let openMoreSlides = () => {
@@ -110,7 +108,7 @@ window.onload = function () {
       let placemark = new ymaps.Placemark([55.79938477, 37.53186419], {
           balloonContent: [
             '<div class="map__balloon">',
-            'Ленинградский пр-т., 47 стр. 1',
+            'Ленинградский пр-т., 47 стр.1',
             '</div>'
           ].join('')
         },

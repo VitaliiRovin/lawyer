@@ -12,12 +12,31 @@
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
+
+    @include landscape {
+        justify-content: space-between;
+    }
 }
 
-header__links {
+.header__links {
     display: flex;
+
+    @include landscape {
+        margin-right: 50px;
+    }
 }
 
 .header__nav {
     margin-left: auto;
+
+    @include landscape {
+        display: none;
+    }
 }
+
+.header__logo {
+    @include landscape {
+        flex: 1;
+    }
+}
+

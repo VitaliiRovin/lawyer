@@ -17,6 +17,10 @@
     text-align: center;
     color: $white-color;
 
+    @include tablets {
+        width: 80%;
+    }
+
     & h2 {
         font-size: 40px;
         font-weight: 400;
@@ -34,6 +38,21 @@
     padding-top: 150px;
     padding-bottom: 150px;
 
+    @include landscape-up {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+
+    .practice__list-container {
+        max-width: 1200px;
+
+        @include landscape-up {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
     &:first-child {
         background-color: $grey-color;
 
@@ -42,10 +61,16 @@
             display: grid;
             grid-template-rows: 70px 240px 100px;
             grid-gap: 50px;
-        }
+            margin: 0;
 
-        .practice__list-container {
-            max-width: 1200px;
+            @include landscape-up {
+                grid-gap: 30px;
+                margin-bottom: 20px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
     }
 
@@ -54,6 +79,15 @@
         .practice__item {
             display: grid;
             grid-template-rows: 380px 130px 100px;
+
+            @include landscape-up {
+                grid-template-rows: 330px 50px 100px;
+            }
+
+            @include tablets {
+                width: 300px;
+                grid-template-rows: 330px 80px 100px;
+            }
         }
     }
 
@@ -63,6 +97,15 @@
         .practice__item {
             display: grid;
             grid-template-rows: 380px 130px 100px;
+
+            @include landscape-up {
+                grid-template-rows: 330px 70px 100px;
+            }
+
+            @include tablets {
+                width: 300px;
+                grid-template-rows: 330px 80px 100px;
+            }
         }
     }
 }
@@ -86,6 +129,10 @@
     min-width: 300px;
     width: 450px;
     margin-right: 20px;
+
+    @include landscape-up {
+        margin-right: 0;
+    }
 
     &:last-child {
         margin-right: 0;

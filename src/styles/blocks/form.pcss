@@ -6,6 +6,17 @@
     display: flex;
     margin-bottom: 10px;
     position: relative;
+
+    &:nth-child(3) {
+        @include phones {
+            flex-direction: column;
+
+            .form__col:first-child {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
 }
 
 .form__input {

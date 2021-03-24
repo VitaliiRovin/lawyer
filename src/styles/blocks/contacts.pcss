@@ -4,10 +4,17 @@
 
 .contacts__pic {
     width: 50%;
-    background-image: url("../images/background/contacts.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+
+    @media screen and (min-width: 900px){
+        background-image: url("../images/background/contacts.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    @include landscape {
+        display: none;
+    }
 }
 
 .contacts__content {
@@ -16,10 +23,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @include landscape {
+        flex: 1;
+    }
 }
 
 .contacts__container {
-    padding: 200px 0;
+    padding: 200px 20px;
 }
 
 .contacts__text {

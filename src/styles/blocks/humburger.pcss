@@ -1,0 +1,95 @@
+.hamburger {
+    width: 0;
+}
+
+.hamburger__link {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    color: $black-color;
+}
+
+.hamburger__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    right: -100%;
+    width: 400px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    text-align: center;
+    background-color: $grey-color;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+
+    @include phones {
+        width: 100%;
+    }
+}
+
+.hamburger__item {
+    display: block;
+    padding: 12px 12px;
+}
+
+#hamburger__toggle {
+    opacity: 0;
+}
+
+.hamburger__btn {
+    display: none;
+    align-items: center;
+    position: fixed;
+    top: 43px;
+    right: 8%;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 100;
+
+    @include landscape {
+        display: flex;
+    }
+}
+
+.hamburger__btn > span,
+.hamburger__btn > span::before,
+.hamburger__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+}
+
+.hamburger__btn > span::before {
+    content: '';
+    top: -8px;
+}
+
+.hamburger__btn > span::after {
+    content: '';
+    top: 8px;
+}
+
+.hamburger__item:hover {
+    background-color: $white-color;
+}
+
+#hamburger__toggle:checked ~ .hamburger__btn > span {
+    transform: rotate(45deg);
+}
+#hamburger__toggle:checked ~ .hamburger__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+#hamburger__toggle:checked ~ .hamburger__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+#hamburger__toggle:checked ~ .hamburger__box {
+    visibility: visible;
+    right: 0;
+}
