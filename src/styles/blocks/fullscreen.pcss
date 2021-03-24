@@ -47,11 +47,6 @@
                     margin-bottom: 40px;
                 }
 
-                @include phones {
-                    width: 250px;
-                    height: 250px;
-                }
-
                 .swiper-pagination-bullet {
                     width: 10px;
                     height: 10px;
@@ -89,11 +84,6 @@
 
                 @include tablets {
                     width: 300px;
-                }
-
-                @include phones {
-                    width: 250px;
-                    height: 250px;
                 }
 
                 &::-webkit-scrollbar {
@@ -177,6 +167,10 @@
         @include landscape {
             margin-left: 2%;
         }
+
+        @include phones {
+            display: none;
+        }
     }
 
     .fullscreen__right {
@@ -186,6 +180,10 @@
 
         @include landscape {
             margin-right: 2%;
+        }
+
+        @include phones {
+            display: none;
         }
     }
 }

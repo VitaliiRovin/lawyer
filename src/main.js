@@ -149,36 +149,37 @@ window.onload = function () {
 
   let parallaxEffect = () => {//эфект паралакса
 
-    window.onresize = function () {
-      let withWindow = document.documentElement.clientWidth;
+    let withWindow = document.documentElement.clientWidth;
 
-      if (withWindow > 900) {
-        let parallaxMain = (function () {
-          const bg = document.querySelector(".hero__bg");
+    // window.onresize = function () {
+    // }
 
-          return {
-            move: function (block, windowScroll, strafeAmount) {
-              let strafe = windowScroll / -strafeAmount + "%";
-              let style = block.style;
-              let transformString = "translate3d(0, " + strafe + ", 0)";
+    if (withWindow > 900) {
+      let parallaxMain = (function () {
+        const bg = document.querySelector(".hero__bg");
 
-              style.transform = transformString;
-              style.webkitTransform = transformString;
-            },
-            init: function (wScroll) {
-              this.move(bg, wScroll, -20);
-            }
+        return {
+          move: function (block, windowScroll, strafeAmount) {
+            let strafe = windowScroll / -strafeAmount + "%";
+            let style = block.style;
+            let transformString = "translate3d(0, " + strafe + ", 0)";
+
+            style.transform = transformString;
+            style.webkitTransform = transformString;
+          },
+          init: function (wScroll) {
+            this.move(bg, wScroll, -20);
           }
-        }());
+        }
+      }());
 
-        window.onscroll = function () {
-          let wScroll = window.pageYOffset;
-          parallaxMain.init(wScroll);
-        };
-      } else {
-        window.onscroll = function () {
-        };
-      }
+      window.onscroll = function () {
+        let wScroll = window.pageYOffset;
+        parallaxMain.init(wScroll);
+      };
+    } else {
+      window.onscroll = function () {
+      };
     }
   }
   parallaxEffect();
