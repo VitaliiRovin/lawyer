@@ -122,8 +122,7 @@ window.onload = function () {
         start: 'top bottom',
         end: 'center center',
         scrub: 1,
-        toggleActions: 'restart reverse restart reset',
-        markers: true
+        toggleActions: 'restart reverse restart reset'
       },
       duration: 1,
       y: 400,
