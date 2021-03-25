@@ -19,93 +19,115 @@ window.onload = function () {
       .from('.hero__btn', {y: 0}, '-=0.5');
 
     //секция practice заголовок
-    let tlPractice = gsap.timeline({defaults: {x: 400, duration: 1, opacity: 0, ease: "back.out(1.6)",}});
+    let tlPractice = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.practice__header-container h2',
+        start: 'top 80%',
+        end: 'bottom 60%',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      defaults: {x: 400, opacity: 0, ease: "power4.out",}
+    });
+
     tlPractice
       .from('.practice__header-container h2', {})
-      .from('.practice__header-container h3', {x: -400}, '-=1');
-
-    ScrollTrigger.create({
-      animation: tlPractice,
-      trigger: '.practice__header',
-      start: 'top bottom',
-      toggleActions: 'restart none none reset'
-    });
+      .from('.practice__header-container h3', {x: -400});
 
     //секция practice контент
-    let tlPracticeOne = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
-    let tlPracticeTwo = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
-    let tlPracticeThree = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
+    let tlPracticeOne = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.practice__list:first-child',
+        start: 'top 70%',
+        end: 'bottom bottom',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      defaults:
+        {x: 50, opacity: 0, ease: "power4.out",}
+    });
 
     tlPracticeOne
-      .from('.practice__list:first-child .practice__item:first-child', {})
-      .from('.practice__list:first-child .practice__item:nth-child(2)', {}, '-=0.5')
-      .from('.practice__list:first-child .practice__item:last-child', {}, '-=0.5');
+      .from('.practice__list:first-child .practice__item:first-child', {}, '-=1')
+      .from('.practice__list:first-child .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:first-child .practice__item:last-child', {}, '-=0.4');
+
+    let tlPracticeTwo = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.practice__list:nth-child(2)',
+        start: 'top 70%',
+        end: 'bottom bottom',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      defaults: {x: 50, opacity: 0, ease: "power4.out",}
+    });
 
     tlPracticeTwo
-      .from('.practice__list:nth-child(2) .practice__item:first-child', {})
-      .from('.practice__list:nth-child(2) .practice__item:nth-child(2)', {}, '-=0.5')
-      .from('.practice__list:nth-child(2) .practice__item:last-child', {}, '-=0.5');
+      .from('.practice__list:nth-child(2) .practice__item:first-child', {}, '-=1')
+      .from('.practice__list:nth-child(2) .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:nth-child(2) .practice__item:last-child', {}, '-=0.4');
+
+    let tlPracticeThree = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.practice__list:last-child',
+        start: 'top 70%',
+        end: 'bottom bottom',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      defaults: {x: 50, opacity: 0, ease: "power4.out",}
+    });
 
     tlPracticeThree
-      .from('.practice__list:last-child .practice__item:first-child', {})
-      .from('.practice__list:last-child .practice__item:nth-child(2)', {}, '-=0.5')
-      .from('.practice__list:last-child .practice__item:last-child', {}, '-=0.5');
-
-    ScrollTrigger.create({
-      animation: tlPracticeOne,
-      trigger: '.practice__list:first-child .practice__item:first-child',
-      start: 'top bottom',
-      toggleActions: 'play none play reset'
-    });
-
-    ScrollTrigger.create({
-      animation: tlPracticeTwo,
-      trigger: '.practice__list:nth-child(2) .practice__item:first-child',
-      start: 'top bottom',
-      toggleActions: 'play none play reset'
-    });
-
-    ScrollTrigger.create({
-      animation: tlPracticeThree,
-      trigger: '.practice__list:last-child .practice__item:first-child',
-      start: 'top bottom',
-      toggleActions: 'play none play reset'
-    });
+      .from('.practice__list:last-child .practice__item:first-child', {}, '-=1')
+      .from('.practice__list:last-child .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:last-child .practice__item:last-child', {}, '-=0.4');
 
     //секция inst
-    let tlInst = gsap.timeline({defaults: {x: 200, duration: 0.7, opacity: 0, ease: "power4.out",}});
-    let instBtn = gsap.from('.inst__btn-more', {duration: 1.5, opacity: 0});
+    let tlInst = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.inst__list',
+        start: '-10% 70%',
+        end: 'bottom bottom',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      defaults: {x: 100, opacity: 0, ease: "power4.out",}
+    });
 
     tlInst
       .from('.inst__item:first-child', {})
-      .from('.inst__item:nth-child(2)', {}, '-=0.6')
-      .from('.inst__item:nth-child(3)', {}, '-=0.6')
-      .from('.inst__item:nth-child(6)', {x: -200}, '-=0.6')
-      .from('.inst__item:nth-child(5)', {x: -200}, '-=0.6')
-      .from('.inst__item:nth-child(4)', {x: -200}, '-=0.6')
+      .from('.inst__item:nth-child(2)', {}, '-=0.4')
+      .from('.inst__item:nth-child(3)', {}, '-=0.4')
+      .from('.inst__item:nth-child(4)', {}, '-=0.4')
+      .from('.inst__item:nth-child(5)', {}, '-=0.4')
+      .from('.inst__item:nth-child(6)', {}, '-=0.4')
 
-    ScrollTrigger.create({
-      animation: tlInst,
-      trigger: '.inst__item:first-child',
-      start: 'top bottom',
-      toggleActions: 'play none play reset'
-    });
-
-    ScrollTrigger.create({
-      animation: instBtn,
-      trigger: '.inst__btn-more',
-      start: 'top bottom',
-      toggleActions: 'play none play reset'
+    let instBtn = gsap.from('.inst__btn-more', {
+      scrollTrigger: {
+        trigger: '.inst__btn-more',
+        start: 'center bottom',
+        end: 'center center',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset'
+      },
+      opacity: 0
     });
 
     //секция contact
-    let contact = gsap.from('.contacts__container', {duration: 1, y:400, opacity: 0});
-
-    ScrollTrigger.create({
-      animation: contact,
-      trigger: '.contacts',
-      start: 'top bottom',
-      toggleActions: 'restart pause resume pause'
+    let contact = gsap.from('.contacts__container', {
+      scrollTrigger: {
+        trigger: '.contacts__content',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: 1,
+        toggleActions: 'restart reverse restart reset',
+        markers: true
+      },
+      duration: 1,
+      y: 400,
+      opacity: 0
     });
   }
   scrollAnimation();
