@@ -6,6 +6,110 @@ if (process.env.NODE_ENV === "development") {
 
 window.onload = function () {
 
+  let scrollAnimation = () => {//скролл эффекты
+    //хэдер
+    gsap.from('.header', {duration: 1, opacity: 0});
+
+    //секция hero
+    let tlHero = gsap.timeline({defaults: {duration: 1, opacity: 0, y: 300}});
+    tlHero
+      .from('.hero__content h1', {ease: "back.out(1.6)"})
+      .from('.hero__content h2', {ease: "back.out(1.6)"}, '-=0.3')
+      .from('.hero__content h3, .hero__content p', {ease: "back.out(1.6)"}, '-=0.5')
+      .from('.hero__btn', {y: 0}, '-=0.5');
+
+    //секция practice заголовок
+    let tlPractice = gsap.timeline({defaults: {x: 400, duration: 1, opacity: 0, ease: "back.out(1.6)",}});
+    tlPractice
+      .from('.practice__header-container h2', {})
+      .from('.practice__header-container h3', {x: -400}, '-=1');
+
+    ScrollTrigger.create({
+      animation: tlPractice,
+      trigger: '.practice__header',
+      start: 'top bottom',
+      toggleActions: 'restart none none reset'
+    });
+
+    //секция practice контент
+    let tlPracticeOne = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
+    let tlPracticeTwo = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
+    let tlPracticeThree = gsap.timeline({defaults: {x: 100, duration: 0.7, opacity: 0, ease: "power4.out",}});
+
+    tlPracticeOne
+      .from('.practice__list:first-child .practice__item:first-child', {})
+      .from('.practice__list:first-child .practice__item:nth-child(2)', {}, '-=0.5')
+      .from('.practice__list:first-child .practice__item:last-child', {}, '-=0.5');
+
+    tlPracticeTwo
+      .from('.practice__list:nth-child(2) .practice__item:first-child', {})
+      .from('.practice__list:nth-child(2) .practice__item:nth-child(2)', {}, '-=0.5')
+      .from('.practice__list:nth-child(2) .practice__item:last-child', {}, '-=0.5');
+
+    tlPracticeThree
+      .from('.practice__list:last-child .practice__item:first-child', {})
+      .from('.practice__list:last-child .practice__item:nth-child(2)', {}, '-=0.5')
+      .from('.practice__list:last-child .practice__item:last-child', {}, '-=0.5');
+
+    ScrollTrigger.create({
+      animation: tlPracticeOne,
+      trigger: '.practice__list:first-child .practice__item:first-child',
+      start: 'top bottom',
+      toggleActions: 'play none play reset'
+    });
+
+    ScrollTrigger.create({
+      animation: tlPracticeTwo,
+      trigger: '.practice__list:nth-child(2) .practice__item:first-child',
+      start: 'top bottom',
+      toggleActions: 'play none play reset'
+    });
+
+    ScrollTrigger.create({
+      animation: tlPracticeThree,
+      trigger: '.practice__list:last-child .practice__item:first-child',
+      start: 'top bottom',
+      toggleActions: 'play none play reset'
+    });
+
+    //секция inst
+    let tlInst = gsap.timeline({defaults: {x: 200, duration: 0.7, opacity: 0, ease: "power4.out",}});
+    let instBtn = gsap.from('.inst__btn-more', {duration: 1.5, opacity: 0});
+
+    tlInst
+      .from('.inst__item:first-child', {})
+      .from('.inst__item:nth-child(2)', {}, '-=0.6')
+      .from('.inst__item:nth-child(3)', {}, '-=0.6')
+      .from('.inst__item:nth-child(6)', {x: -200}, '-=0.6')
+      .from('.inst__item:nth-child(5)', {x: -200}, '-=0.6')
+      .from('.inst__item:nth-child(4)', {x: -200}, '-=0.6')
+
+    ScrollTrigger.create({
+      animation: tlInst,
+      trigger: '.inst__item:first-child',
+      start: 'top bottom',
+      toggleActions: 'play none play reset'
+    });
+
+    ScrollTrigger.create({
+      animation: instBtn,
+      trigger: '.inst__btn-more',
+      start: 'top bottom',
+      toggleActions: 'play none play reset'
+    });
+
+    //секция contact
+    let contact = gsap.from('.contacts__container', {duration: 1, y:400, opacity: 0});
+
+    ScrollTrigger.create({
+      animation: contact,
+      trigger: '.contacts',
+      start: 'top bottom',
+      toggleActions: 'restart pause resume pause'
+    });
+  }
+  scrollAnimation();
+
   let openMoreSlides = () => {
     const btn = document.querySelector('.inst__btn-more');
     let data = Array.from(document.querySelectorAll('.inst__list .inst__item'));
@@ -155,9 +259,6 @@ window.onload = function () {
   let parallaxEffect = () => {//эфект паралакса
 
     let withWindow = document.documentElement.clientWidth;
-
-    // window.onresize = function () {
-    // }
 
     if (withWindow > 900) {
       let parallaxMain = (function () {
