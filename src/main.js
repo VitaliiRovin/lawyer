@@ -22,7 +22,7 @@ window.onload = function () {
     let tlPractice = gsap.timeline({
       scrollTrigger: {
         trigger: '.practice__header-container h2',
-        start: 'top 80%',
+        start: '-10% 80%',
         end: 'bottom 60%',
         scrub: 1,
         toggleActions: 'restart reverse restart reset'
@@ -38,8 +38,8 @@ window.onload = function () {
     let tlPracticeOne = gsap.timeline({
       scrollTrigger: {
         trigger: '.practice__list:first-child',
-        start: 'top 70%',
-        end: 'bottom bottom',
+        start: '-10% 80%',
+        end: '150% bottom',
         scrub: 1,
         toggleActions: 'restart reverse restart reset'
       },
@@ -48,31 +48,32 @@ window.onload = function () {
     });
 
     tlPracticeOne
-      .from('.practice__list:first-child .practice__item:first-child', {}, '-=1')
-      .from('.practice__list:first-child .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:first-child .practice__item:first-child', {}, '-=0.4')
+      .from('.practice__list:first-child .practice__item:nth-child(2)', {}, '-=0.4')
       .from('.practice__list:first-child .practice__item:last-child', {}, '-=0.4');
 
     let tlPracticeTwo = gsap.timeline({
       scrollTrigger: {
         trigger: '.practice__list:nth-child(2)',
-        start: 'top 70%',
-        end: 'bottom bottom',
+        start: '-10% 80%',
+        end: '150% bottom',
         scrub: 1,
-        toggleActions: 'restart reverse restart reset'
+        toggleActions: 'restart reverse restart reset',
+        markers: true
       },
       defaults: {x: 50, opacity: 0, ease: "power4.out",}
     });
 
     tlPracticeTwo
-      .from('.practice__list:nth-child(2) .practice__item:first-child', {}, '-=1')
-      .from('.practice__list:nth-child(2) .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:nth-child(2) .practice__item:first-child', {}, '-=0.4')
+      .from('.practice__list:nth-child(2) .practice__item:nth-child(2)', {}, '-=0.4')
       .from('.practice__list:nth-child(2) .practice__item:last-child', {}, '-=0.4');
 
     let tlPracticeThree = gsap.timeline({
       scrollTrigger: {
         trigger: '.practice__list:last-child',
-        start: 'top 70%',
-        end: 'bottom bottom',
+        start: 'top 80%',
+        end: '150% bottom',
         scrub: 1,
         toggleActions: 'restart reverse restart reset'
       },
@@ -80,30 +81,11 @@ window.onload = function () {
     });
 
     tlPracticeThree
-      .from('.practice__list:last-child .practice__item:first-child', {}, '-=1')
-      .from('.practice__list:last-child .practice__item:nth-child(2)', {}, '-=0.9')
+      .from('.practice__list:last-child .practice__item:first-child', {}, '-=0.4')
+      .from('.practice__list:last-child .practice__item:nth-child(2)', {}, '-=0.4')
       .from('.practice__list:last-child .practice__item:last-child', {}, '-=0.4');
 
     //секция inst
-    let tlInst = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.inst__list',
-        start: '-10% 70%',
-        end: 'bottom bottom',
-        scrub: 1,
-        toggleActions: 'restart reverse restart reset'
-      },
-      defaults: {x: 100, opacity: 0, ease: "power4.out",}
-    });
-
-    tlInst
-      .from('.inst__item:first-child', {})
-      .from('.inst__item:nth-child(2)', {}, '-=0.4')
-      .from('.inst__item:nth-child(3)', {}, '-=0.4')
-      .from('.inst__item:nth-child(4)', {}, '-=0.4')
-      .from('.inst__item:nth-child(5)', {}, '-=0.4')
-      .from('.inst__item:nth-child(6)', {}, '-=0.4')
-
     let instBtn = gsap.from('.inst__btn-more', {
       scrollTrigger: {
         trigger: '.inst__btn-more',
@@ -131,7 +113,7 @@ window.onload = function () {
   }
   scrollAnimation();
 
-  let openMoreSlides = () => {
+  let openMoreSlides = () => {//кнопка показать еще
     const btn = document.querySelector('.inst__btn-more');
     let data = Array.from(document.querySelectorAll('.inst__list .inst__item'));
     let step = 6;
@@ -256,23 +238,36 @@ window.onload = function () {
 
 
   let scrollEffect = () => {//плавная прокрутка страницы
-    const anchors = document.querySelectorAll('a[href*="#"]')
 
-    for (let anchor of anchors) {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault()
+    function getSamePageAnchor (link) {
+      if (
+        link.protocol !== window.location.protocol ||
+        link.host !== window.location.host ||
+        link.pathname !== window.location.pathname ||
+        link.search !== window.location.search
+      ) {
+        return false;
+      }
 
-        const blockID = anchor.getAttribute('href').substr(1)
-        let heightMenu = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
-        let position = document.getElementById(blockID).getBoundingClientRect();
-
-        window.scrollTo({
-          top: position.top + window.scrollY - heightMenu,
-          left: position.left,
-          behavior: "smooth"
-        })
-      })
+      return link.hash;
     }
+
+    function scrollToHash(hash, e) {
+      let heightMenu = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
+      const elem = hash ? document.querySelector(hash) : false;
+      if(elem) {
+        if(e) e.preventDefault();
+        gsap.to(window, {scrollTo: {y:elem.getBoundingClientRect().top + window.scrollY - heightMenu}});
+      }
+    }
+
+    document.querySelectorAll('a[href]').forEach(a => {
+      a.addEventListener('click', e => {
+        scrollToHash(getSamePageAnchor(a), e);
+      });
+    });
+
+    scrollToHash(window.location.hash);
   };
   scrollEffect();
 

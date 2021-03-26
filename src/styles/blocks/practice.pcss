@@ -11,11 +11,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 150px;
-    padding-top: 150px;
+    padding-bottom: 70px;
+    padding-top: 70px;
     width: 55%;
     text-align: center;
     color: $white-color;
+    text-shadow: 1px 1px 8px $black-color;
 
     @include tablets {
         width: 80%;
@@ -35,8 +36,8 @@
 }
 
 .practice__list {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 
     @include landscape-up {
         padding-top: 80px;
@@ -59,8 +60,8 @@
         .practice__item {
             width: 300px;
             display: grid;
-            grid-template-rows: 70px 240px 100px;
-            grid-gap: 50px;
+            grid-template-rows: 60px 240px 80px;
+            grid-gap: 30px;
             margin: 0;
 
             .practice__img {
@@ -68,7 +69,6 @@
             }
 
             @include landscape-up {
-                grid-gap: 30px;
                 margin-bottom: 20px;
 
                 &:last-child {
@@ -82,7 +82,7 @@
 
         .practice__item {
             display: grid;
-            grid-template-rows: 380px 130px 100px;
+            grid-template-rows: 330px 75px 60px;
 
             @include landscape-up {
                 grid-template-rows: 330px 50px 100px;
@@ -90,7 +90,7 @@
 
             @include tablets {
                 width: 300px;
-                grid-template-rows: 330px 80px 100px;
+                grid-template-rows: 310px 70px 90px;
             }
         }
     }
@@ -100,7 +100,7 @@
 
         .practice__item {
             display: grid;
-            grid-template-rows: 380px 130px 100px;
+            grid-template-rows: 330px 75px 60px;
 
             @include landscape-up {
                 grid-template-rows: 330px 70px 100px;
@@ -108,7 +108,7 @@
 
             @include tablets {
                 width: 300px;
-                grid-template-rows: 330px 80px 100px;
+                grid-template-rows: 310px 70px 90px;
             }
         }
     }
