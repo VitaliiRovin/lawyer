@@ -58,8 +58,7 @@ window.onload = function () {
         start: '-10% 80%',
         end: '150% bottom',
         scrub: 1,
-        toggleActions: 'restart reverse restart reset',
-        markers: true
+        toggleActions: 'restart reverse restart reset'
       },
       defaults: {x: 50, opacity: 0, ease: "power4.out",}
     });
