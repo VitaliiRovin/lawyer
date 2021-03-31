@@ -216,7 +216,7 @@ window.onload = function () {
       map.behaviors.disable('scrollZoom');//отключаю масштабирование по колесу
       map.behaviors.disable('drag');//отключаю прокручивание по зажатию
 
-      let placemark = new ymaps.Placemark([55.79938477, 37.53186419], {
+      let placeMark = new ymaps.Placemark([55.79938477, 37.53186419], {
           balloonContent: [
             '<div class="map__balloon">',
             'Ленинградский пр-т., 47 стр.1',
@@ -229,8 +229,8 @@ window.onload = function () {
           // iconImageSize: [21, 34]
         });
 
-      map.geoObjects.add(placemark)
-      placemark.balloon.open();//зафиксировать балун открытым
+      map.geoObjects.add(placeMark)
+      placeMark.balloon.open();//зафиксировать балун открытым
     }
   };
   api();
@@ -247,7 +247,6 @@ window.onload = function () {
       ) {
         return false;
       }
-
       return link.hash;
     }
 

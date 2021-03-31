@@ -1,0 +1,13 @@
+{
+    "name": "evd1ser/for_nikita",
+    "authors": [
+        {
+            "name": "evd1ser",
+            "email": "evd1ser@gmail.com"
+        }
+    ],
+    "require": {
+        "raiym/instagram-php-scraper": "^0.11.1",
+        "guzzlehttp/guzzle": "^7.3"
+    }
+}
