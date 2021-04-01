@@ -238,7 +238,7 @@ window.onload = function () {
 
   let scrollEffect = () => {//плавная прокрутка страницы
 
-    function getSamePageAnchor (link) {
+    function getSamePageAnchor(link) {
       if (
         link.protocol !== window.location.protocol ||
         link.host !== window.location.host ||
@@ -253,9 +253,9 @@ window.onload = function () {
     function scrollToHash(hash, e) {
       let heightMenu = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
       const elem = hash ? document.querySelector(hash) : false;
-      if(elem) {
-        if(e) e.preventDefault();
-        gsap.to(window, {scrollTo: {y:elem.getBoundingClientRect().top + window.scrollY - heightMenu}});
+      if (elem) {
+        if (e) e.preventDefault();
+        gsap.to(window, {scrollTo: {y: elem.getBoundingClientRect().top + window.scrollY - heightMenu}});
       }
     }
 
@@ -314,7 +314,22 @@ window.onload = function () {
 
       if (validateForm(myForm)) {
         const send = document.querySelector('.form__btn');
-        const thanks = document.querySelector('.form__thanks')
+        const thanks = document.querySelector('.form__thanks');
+        const data = {
+          name: myForm.elements.name.value,
+          address: myForm.elements.address.value,
+          email: myForm.elements.email.value,
+          tel: myForm.elements.tel.value,
+          obj: myForm.elements.obj.value,
+          text: myForm.elements.text.value
+        };
+        // const xhr = new XMLHttpRequest();
+        // xhr.responseType = 'json';
+        // xhr.open('POST', 'сервер отправки');
+        // xhr.send(JSON.stringify(data));
+        // xhr.addEventListener('load', () => {
+        //   console.log(xhr.response);
+        // })
 
         send.classList.add('form__btn--send')
         thanks.style.opacity = "1";
@@ -329,7 +344,6 @@ window.onload = function () {
 
         setTimeout(timerThanks, 1500)
         setTimeout(timerBtn, 500)
-        console.log('отправка данных на сервер');
         myForm.reset();
       }
     });
