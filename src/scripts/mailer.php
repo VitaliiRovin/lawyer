@@ -2,7 +2,7 @@
 
 $option = (object)[
     'urlHome' => 'site request',
-    'mainemail' => 'tarkit@gmail.com',
+    'mainemail' => 'vitaly.04afapib@gmail.com',
     'nameField' => 'name',
     'addToFile' => true,
     'fileName' => "saveData.txt",

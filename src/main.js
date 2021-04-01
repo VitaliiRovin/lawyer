@@ -323,13 +323,13 @@ window.onload = function () {
           obj: myForm.elements.obj.value,
           text: myForm.elements.text.value
         };
-        // const xhr = new XMLHttpRequest();
-        // xhr.responseType = 'json';
-        // xhr.open('POST', 'сервер отправки');
-        // xhr.send(JSON.stringify(data));
-        // xhr.addEventListener('load', () => {
-        //   console.log(xhr.response);
-        // })
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'json';
+        xhr.open('POST', 'https://vitaliirovin.github.io/lawyer/dist/scripts/mailer.php');
+        xhr.send(JSON.stringify(data));
+        xhr.addEventListener('load', () => {
+          console.log(xhr.response);
+        })
 
         send.classList.add('form__btn--send')
         thanks.style.opacity = "1";
