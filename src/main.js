@@ -325,26 +325,24 @@ window.onload = function () {
         };
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
-        xhr.open('POST', 'https://vitaliirovin.github.io/lawyer/dist/scripts/mailer.php');
+        xhr.open('POST', 'адрес хоста на mailer.php');
         xhr.send(JSON.stringify(data));
         xhr.addEventListener('load', () => {
-          console.log(xhr.response);
+          send.classList.add('form__btn--send')
+          thanks.style.opacity = "1";
+
+          function timerBtn() {
+            send.classList.remove('form__btn--send')
+          }
+
+          function timerThanks() {
+            thanks.style.opacity = "0";
+          }
+
+          setTimeout(timerThanks, 1500)
+          setTimeout(timerBtn, 500)
+          myForm.reset();
         })
-
-        send.classList.add('form__btn--send')
-        thanks.style.opacity = "1";
-
-        function timerBtn() {
-          send.classList.remove('form__btn--send')
-        }
-
-        function timerThanks() {
-          thanks.style.opacity = "0";
-        }
-
-        setTimeout(timerThanks, 1500)
-        setTimeout(timerBtn, 500)
-        myForm.reset();
       }
     });
 
