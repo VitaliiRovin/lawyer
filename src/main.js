@@ -325,7 +325,7 @@ window.onload = function () {
         };
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
-        xhr.open('POST', 'адрес хоста на mailer.php');
+        xhr.open('POST', 'mailer.php');
         xhr.send(JSON.stringify(data));
         xhr.addEventListener('load', () => {
           send.classList.add('form__btn--send')
