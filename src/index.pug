@@ -185,72 +185,13 @@ html(lang="en")
                     h2 #{item.name}
                     h3 #{item.desc}
 
+
         .inst(id="inst")
-          -
-            var items = [
-              {
-                text: "К великому сожалению мы и наши родственники не вечны, и иногда возникают ситуации когда требуется " +
-                        "грамотная помощь в оформлении и итоговом наследовании оставшегося имущества. Ситуация: " +
-                        "Обратилась клиент, которая после смерти матери унаследовала от нее квартиру в которой уже " +
-                        "давно проживала и обслуживала, но по пр",
-                img: ["test"]
-              },
-              {
-                text: "К великому сожалению мы и наши родственники не вечны, и иногда возникают ситуации когда требуется " +
-                        "грамотная помощь в оформлении и итоговом наследовании оставшегося имущества. Ситуация: " +
-                        "Обратилась клиент, которая после смерти матери унаследовала от нее квартиру в которой уже " +
-                        "давно проживала и обслуживала, но по прошествию пары месяцев после регистрации, оказалось " +
-                        "что 1/2 квартиры (нотариус этого не установил сразу) принадлежит и оформлена на умершего " +
-                        "брата матери о существовании которого не только не знал ни кто кроме матери клиента, но и " +
-                        "ЗАГС, так как свидетельство о рождении было утеряно в пожаре архива во время войны. Задача: " +
-                        "Доказать родство оказалось не так просто, бумажного следа кроме свидетельства о смерти " +
-                        "(фамилия друга) нет, были направлены запросы в ФСБ, ФНС, ЗАГС, Администрации, Росреестр, МВД, " +
-                        "Архив ВС РФ, но ответы оставались неутешительными. Решение: после сбора всех документов " +
-                        "которые только могут быть - подано заявление в суд на установление родства и принятия " +
-                        "наследства на часть квартиры. Заявление ввиду нового года приходило обратно 3 раза, пришлось " +
-                        "связываться с председателем суда, после разговора с которым удалось добиться принятия заявления. " +
-                        "Об итоге расскажу позже",
-                img: ["practice9", "practice8", "practice7", "practice6"]
-              },
-              {text: "контент", img: ["practice1"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-              {text: "контент", img: ["practice9"]},
-            ];
           .inst__content
             ul.inst__list
-              each item in items
-                li.inst__item
-                  +image(`content/${item.img[0]}.jpg`, "inst__img", "изображение из инстограмма")
-                  p #{item.text}
-                  .inst__cover-block
             button.inst__btn-more Показать еще
             .fullscreen.swiper-container
               ul.fullscreen__list.swiper-wrapper
-                each item in items
-                  li.fullscreen__item.swiper-slide
-                    .fullscreen__container
-                      .fullscreen__columnLeft
-                        ul.fullscreen__slider-list.swiper-wrapper
-                          each pic in item.img
-                            li.fullscreen__slider-item.swiper-slide
-                              +image(`content/${pic}.jpg`, "inst__img", "изображение из инстограмма")
-                        .fullscreen__pagination.swiper-pagination
-                      .fullscreen__columnRight
-                        .fullscreen__header
-                          a.fullscreen__link-name(href="https://www.instagram.com/yourist_msk/") yourist_msk
-                          a.fullscreen__link-icon(href="https://www.instagram.com/yourist_msk/")
-                            +icon("insta", "inst__icon")
-                        p #{item.text}
               .fullscreen__close
                 +icon("close", "fullscreen__icon")
               .fullscreen__left.swiper-button-prev

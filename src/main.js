@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "development") {
 window.onload = function () {
 
   let scrollAnimation = () => {//скролл эффекты
-    //хэдер
+
     gsap.from('.header', {duration: 1, opacity: 0});
 
     //секция hero
@@ -112,26 +112,6 @@ window.onload = function () {
   }
   scrollAnimation();
 
-  let openMoreSlides = () => {//кнопка показать еще
-    const btn = document.querySelector('.inst__btn-more');
-    let data = Array.from(document.querySelectorAll('.inst__list .inst__item'));
-    let step = 6;
-    let item = 0;
-
-    data.slice(step).forEach(e => e.style.display = 'none');
-    item += step;
-
-    btn.addEventListener('click', function (e) {
-      let tmp = data.slice(item, item + step);
-      tmp.forEach(e => e.style.display = 'block');
-      item += step;
-
-      if (tmp.length < 6)
-        this.remove();
-    });
-  }
-  openMoreSlides();
-
 
   let openInst = () => {//открыть слайдер instagram
     const items = document.querySelectorAll('.inst__item');
@@ -172,26 +152,8 @@ window.onload = function () {
       observeParents: true,
       observeSlideChildren: true,
     });
-
-    const swiperInSwiper = new Swiper('.fullscreen__columnLeft', {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      effect: 'fade',
-      preloadImages: false,
-      lazy: {
-        loadPrevNext: false,
-      },
-      nested: true,
-      watchOverflow: true,
-      observer: true,
-      observeParents: true,
-      observeSlideChildren: true,
-    });
   }
-  openInst();
+
 
 
   let api = () => {//api карта
@@ -395,4 +357,116 @@ window.onload = function () {
     }
   };
   hamburgerClose();
+
+  let openMoreSlides = () => {//кнопка показать еще
+    const btn = document.querySelector('.inst__btn-more');
+    let data = Array.from(document.querySelectorAll('.inst__list .inst__item'));
+    let step = 6;
+    let item = 0;
+
+    data.slice(step).forEach(e => e.style.display = 'none');
+    item += step;
+
+    btn.addEventListener('click', function (e) {
+      let tmp = data.slice(item, item + step);
+      tmp.forEach(e => e.style.display = 'block');
+      item += step;
+
+      if (tmp.length < 6)
+        this.remove();
+    });
+  };
+
+  let getInstagram = () => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'instagram.php');
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.addEventListener('load', ()=> {
+      if (xhr.status >= 400) {
+        console.log('Ошибка');
+      } else {
+        const instagramInfo = xhr.response;
+
+        for (const item of instagramInfo) {
+          createItemDom(item);
+          createItemDomSwiper(item);
+        }
+
+        openMoreSlides();
+        openInst();
+      }
+    });
+
+    function createItemDom(item) {
+      const list = document.querySelector('.inst__list');
+      const li = document.createElement('li');
+      const p = document.createElement('p');
+      const div = document.createElement('div');
+      const img = document.createElement('img');
+
+      list.appendChild(li);
+      li.appendChild(p);
+      li.appendChild(div);
+      li.appendChild(img);
+
+      li.classList.add('inst__item');
+      div.classList.add('inst__cover-block');
+      img.classList.add('inst__img');
+
+      img.setAttribute('src', item.image);
+      img.setAttribute('alt', 'изображение из инстограмма');
+
+      p.textContent = item.description;
+    }
+
+    function createItemDomSwiper(item) {
+      const list = document.querySelector('.fullscreen__list');
+      const li = document.createElement('li');
+      const container = document.createElement('div');
+      const columnLeft = document.createElement('div');
+      const img = document.createElement('img');
+      const columnRight = document.createElement('div');
+      const header = document.createElement('div');
+      const linkName = document.createElement('a');
+      const linkIcon = document.createElement('a');
+      const svg = document.createElement('img');
+      const p = document.createElement('p');
+
+      list.appendChild(li);
+      li.appendChild(container);
+      container.appendChild(columnLeft);
+      columnLeft.appendChild(img);
+      container.appendChild(columnRight);
+      columnRight.appendChild(header);
+      columnRight.appendChild(p);
+      header.appendChild(linkName);
+      header.appendChild(linkIcon);
+      linkIcon.appendChild(svg);
+
+      li.classList.add('fullscreen__item', 'swiper-slide');
+      container.classList.add('fullscreen__container');
+      columnLeft.classList.add('fullscreen__columnLeft');
+      img.classList.add('inst__img');
+      columnRight.classList.add('fullscreen__columnRight');
+      header.classList.add('fullscreen__header');
+      linkName.classList.add('fullscreen__link-name');
+      linkIcon.classList.add('fullscreen__link-icon');
+      svg.classList.add('inst__icon');
+
+      img.setAttribute('src', item.image);
+      img.setAttribute('alt', 'изображение из инстограмма');
+      linkName.setAttribute('href', 'https://www.instagram.com/yourist_msk/');
+      linkIcon.setAttribute('href', 'https://www.instagram.com/yourist_msk/');
+      svg.setAttribute('src', require(`images/content/insta.png`).default);
+      svg.setAttribute('alt', 'иконка');
+
+      p.textContent = item.description;
+      linkName.textContent = 'yourist_msk';
+    }
+  };
+  getInstagram();
+
+
 }
